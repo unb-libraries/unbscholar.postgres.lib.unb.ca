@@ -1,5 +1,3 @@
-version: '3.6'
-
 services:
   unbscholar.postgres.lib.unb.ca:
     build:
