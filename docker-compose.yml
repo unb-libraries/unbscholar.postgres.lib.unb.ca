@@ -3,14 +3,13 @@ services:
     build:
       context: .
     container_name: unbscholar.postgres.lib.unb.ca
-    restart: always
+    restart: unless-stopped
     expose:
       - "5432"
     env_file:
       - ./env/postgres.env
     networks:
       - unbscholar.postgres.lib.unb.ca
-
 networks:
   unbscholar.postgres.lib.unb.ca:
     name: unbscholar.postgres.lib.unb.ca
