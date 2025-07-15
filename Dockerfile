@@ -1,6 +1,6 @@
-FROM postgres:12
+FROM postgres:17.5
 
-ENV TZ America/Moncton
+ENV TZ="America/Moncton"
 COPY build/conf/postgresql.conf /etc/postgresql/postgresql.conf
 COPY build/scripts /scripts
 
@@ -21,4 +21,5 @@ LABEL ca.unb.lib.generator="postgres" \
   org.label-schema.vcs-url="https://github.com/unb-libraries/unbscholar.postgres.lib.unb.ca" \
   org.label-schema.vendor="University of New Brunswick Libraries" \
   org.label-schema.version=$VERSION \
+  org.opencontainers.image.authors="libsupport@unb.ca" \
   org.opencontainers.image.source="https://github.com/unb-libraries/unbscholar.postgres.lib.unb.ca"

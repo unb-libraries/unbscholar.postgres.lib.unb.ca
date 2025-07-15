@@ -1,8 +1,8 @@
 services:
-  unbscholar.postgres.lib.unb.ca:
+  unbscholar-postgres-lib-unb-ca:
     build:
       context: .
-    container_name: unbscholar.postgres.lib.unb.ca
+    container_name: unbscholar-postgres-lib-unb-ca
     restart: unless-stopped
     expose:
       - "5432"

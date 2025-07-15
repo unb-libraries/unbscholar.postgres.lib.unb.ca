@@ -1,24 +1,53 @@
 dockworker:
-  version: '5'
+  version: '6'
   application:
-    name: unbscholar.postgres.lib.unb.ca
-    finish_marker: 'database system is ready to accept connections'
-    project_prefix: SCHOLAR
-    upstream_images:
-      - postgres:12
-    uuid: 3509
-  deployment:
-    environments:
+    name: postgres Instance for unbscholar Applications at UNB Libraries
+    uri: https://unbscholar.postgres.lib.unb.ca
+    description: >
+      A postgres instance for use with unbscholar applications at UNB Libraries.
+    topics:
+      - postgres
+      - unbscholar
+    identifiers:
+      id: unbscholar.postgres.lib.unb.ca
+      slug: unbscholar-postgres-lib-unb-ca
+      short_slug: scholarpostgres
+      uuid: 3509
+    framework:
+      name: postgres
+      version: 7
+      startup_finished_marker: 'database system is ready to accept connections'
+      endpoint:
+        name: http
+        port: 5432
+        readiness_timeout: 15
+    license:
+      license: MIT
+      holder: University of New Brunswick Libraries
+    shell:
+      path: /bin/sh
+  endpoints:
+    env:
+      - dev
       - prod
-    workflow:
-      source: dockworker
-      type: deployment-workflow
-  github:
-    repo: unbscholar.postgres.lib.unb.ca
-    owner: unb-libraries
-  image:
-    push_branches:
-      - prod
-    name: ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca
-    date_tag_image: true
-    repository: ghcr
+    deployments:
+      unbscholar-postgres-lib-unb-ca:
+        default: true
+        managed: true
+        name: unbscholar-postgres-lib-unb-ca
+  workflows:
+    vcs:
+      type: github
+      owner: unb-libraries
+      name: unbscholar.postgres.lib.unb.ca
+    jira:
+      project_keys:
+        - SCHOLAR
+    image:
+      name: ghcr.io/unb-libraries/unbscholar.postgres.lib.unb.ca
+      parent: postgres:8.4
+      repository: GitHub
+      push-branches:
+        - dev
+        - prod
+        - 17.x
