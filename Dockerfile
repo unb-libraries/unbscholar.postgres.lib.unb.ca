@@ -1,6 +1,6 @@
 FROM postgres:12
 
-ENV TZ America/Moncton
+ENV TZ="America/Moncton"
 COPY build/conf/postgresql.conf /etc/postgresql/postgresql.conf
 COPY build/scripts /scripts
 
